@@ -1,4 +1,4 @@
-const message = document.getElementById('message');
+const helloDiv = document.getElementById('hello');
 
 const getData = async () => {
   const url = 'http://ip-api.com/json/';
@@ -6,11 +6,11 @@ const getData = async () => {
   const response = await fetch(url);
   const data = await response.json();
 
-  getMessage(data.countryCode.toLowerCase(), data.query);
+  getMessage(data.countryCode.toLowerCase(), data.query, data.country);
 };
 
-const getMessage = async (lang, ip) => {
-  const url = `https://stefanbohacek.com/hellosalut/?mode=auto`;
+const getMessage = async (lang, ip, country) => {
+  const url = `https://stefanbohacek.com/hellosalut/?lang=${lang}&ip=${ip}`;
 
   const response = await fetch(url);
   const data = await response.json();
@@ -47,8 +47,8 @@ const getMessage = async (lang, ip) => {
     });
 
     const helloMessage = letters + uniChars;
-    message.innerText = helloMessage;
+    helloDiv.innerHTML = `In <b>${country}</b> we say <b>${helloMessage}</b>`;
   } else {
-    message.innerText = hello;
+    helloDiv.innerHTML = `In <b>${country}</b> we say <b>${hello}</b>`;
   }
 };
