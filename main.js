@@ -15,8 +15,6 @@ const getMessage = async (lang, ip, country) => {
   const response = await fetch(url);
   const data = await response.json();
 
-  console.log(data);
-
   let hello = data.hello;
 
   if (hello.includes('&') && hello.includes('#') && hello.includes(';')) {
