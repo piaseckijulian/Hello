@@ -1,7 +1,7 @@
 const helloDiv = document.getElementById('hello');
 
 const getData = async () => {
-  const url = 'https://ip-api.com/json/';
+  const url = 'http://ip-api.com/json/';
 
   const response = await fetch(url);
   const data = await response.json();
