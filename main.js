@@ -2,16 +2,14 @@
 const helloDiv = document.getElementById('hello');
 
 /**
- * It fetches the user's IP address and country code from the ipapi.co API, then passes the data to the
- * getMessage function.
+ * It fetches the user's IP address, language code, and country name from the ipapi.co API, and then
+ * passes those values to the getMessage function.
  */
 const getData = async () => {
   const url = 'https://ipapi.co/json/';
 
   const response = await fetch(url);
   const data = await response.json();
-
-  console.log(data);
 
   const langCode = data.languages;
 
