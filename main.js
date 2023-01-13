@@ -11,11 +11,22 @@ const getData = async () => {
   const response = await fetch(url);
   const data = await response.json();
 
-  const countryCode = data.country_code.toLowerCase();
+  console.log(data);
+
+  const langCode = data.languages;
+
+  let lang = '';
+  for (const letter of langCode) {
+    if (lang.length >= 2) {
+      break;
+    } else {
+      lang += letter;
+    }
+  }
   const countryName = data.country_name;
   const userIP = data.ip;
 
-  getMessage(countryCode, userIP, countryName);
+  getMessage(lang, userIP, countryName);
 };
 
 /**
