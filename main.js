@@ -2,16 +2,20 @@
 const helloDiv = document.getElementById('hello');
 
 /**
- * It fetches the data from the API, then parses it into JSON, then passes the country code, IP
- * address, and country name to the getMessage function.
+ * It fetches the user's IP address and country code from the ipapi.co API, then passes the data to the
+ * getMessage function.
  */
 const getData = async () => {
-  const url = 'http://ip-api.com/json/';
+  const url = 'https://ipapi.co/json/';
 
   const response = await fetch(url);
   const data = await response.json();
 
-  getMessage(data.countryCode.toLowerCase(), data.query, data.country);
+  const countryCode = data.country_code.toLowerCase();
+  const countryName = data.country_name;
+  const userIP = data.ip;
+
+  getMessage(countryCode, userIP, countryName);
 };
 
 /**
