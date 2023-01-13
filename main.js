@@ -1,5 +1,10 @@
+/* Creating a variable called helloDiv and assigning it the value of the element with the id of hello. */
 const helloDiv = document.getElementById('hello');
 
+/**
+ * It fetches the data from the API, then parses it into JSON, then passes the country code, IP
+ * address, and country name to the getMessage function.
+ */
 const getData = async () => {
   const url = 'http://ip-api.com/json/';
 
@@ -9,44 +14,19 @@ const getData = async () => {
   getMessage(data.countryCode.toLowerCase(), data.query, data.country);
 };
 
+/**
+ * It takes three arguments, makes a request to the API, and then displays the result in the DOM
+ * @param lang - The language code of the language you want to display hello.
+ * @param ip - The IP address of the user.
+ * @param country - The country of the user.
+ */
 const getMessage = async (lang, ip, country) => {
   const url = `https://stefanbohacek.com/hellosalut/?lang=${lang}&ip=${ip}`;
 
   const response = await fetch(url);
   const data = await response.json();
 
-  let hello = data.hello;
+  const hello = data.hello;
 
-  if (hello.includes('&') && hello.includes('#') && hello.includes(';')) {
-    hello = hello.replace(/&/g, '');
-    hello = hello.replace(/#/g, '');
-    hello = hello.replace(/;/g, ' ');
-
-    let unicode = '';
-    let letters = '';
-
-    for (const letter of hello) {
-      if (letter % 1 === 0) {
-        unicode += letter;
-      } else {
-        letters += letter;
-      }
-    }
-    unicode = unicode.slice(0, -1);
-    unicode = unicode.split(' ');
-
-    for (let i = 0; i < unicode.length; i++) {
-      unicode[i] = Number(unicode[i]);
-    }
-
-    let uniChars = '';
-    unicode.map((uniChar) => {
-      uniChars += String.fromCharCode(uniChar);
-    });
-
-    const helloMessage = letters + uniChars;
-    helloDiv.innerHTML = `In <b>${country}</b> we say <b>${helloMessage}</b>`;
-  } else {
-    helloDiv.innerHTML = `In <b>${country}</b> we say <b>${hello}</b>`;
-  }
+  helloDiv.innerHTML = `In <b>${country}</b> we say <b>${hello}</b>!`;
 };
