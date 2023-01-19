@@ -34,12 +34,15 @@ const getData = async () => {
  * @param country - The country of the user.
  */
 const getMessage = async (lang, ip, country) => {
-  const url = `https://stefanbohacek.com/hellosalut/?lang=${lang}&ip=${ip}`;
+  const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+  const BASE_URL = `https://stefanbohacek.com/hellosalut/?lang=${lang}&ip=${ip}`;
 
-  const response = await fetch(url);
+  const response = await fetch(PROXY_URL + BASE_URL);
   const data = await response.json();
 
   const hello = data.hello;
 
   helloDiv.innerHTML = `In <b>${country}</b> we say <b>${hello}</b>!`;
 };
+
+window.onload = getData;
