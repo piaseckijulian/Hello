@@ -2,7 +2,7 @@
 
 It shows you how to say word **'Hello'** in **YOUR language** (based on your location)
 
-Try it on this **[website](https://piaseckijulian.github.io/Language-Hello/)**
+Try it on this **[website](https://piaseckijulian.github.io/Hello/)**
 
 ## Credits
 
